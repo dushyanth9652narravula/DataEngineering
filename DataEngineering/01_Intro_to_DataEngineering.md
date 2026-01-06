@@ -17,7 +17,7 @@
 - Data Engineering Pipeline actually divided into two main parts. First one is actual data engineering pipeline and second one is undercurrents which we can see in the below image.
 
   <p align="center">
-  <img src="./_static/Data_Pipeline.png" alt="Data Pipeline" width="300"/>
+  <img src="./_static/Data_Pipeline.png" alt="Data Pipeline" width="1000"/>
   <br>
   <em>Data Engineering Pipeline</em>
   </p>
@@ -81,9 +81,9 @@
 - So we can see that as data maturity level increases with the increase of data volume then the tech stack and employees required also increases.
 
   <p align="center">
-  <img src="./_static/Data_Maturity.png" alt="Data Pipeline" width="300"/>
+  <img src="./_static/Data_Maturity.png" alt="Data Pipeline" width="1000"/>
   <br>
-  <em>Data Engineering Pipeline</em>
+  <em>Data Maturity</em>
   </p>
 
 ## Data Engineers place with in a data team
