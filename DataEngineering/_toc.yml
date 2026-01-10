@@ -3,3 +3,5 @@
 
 format: jb-book
 root: 01_Intro_to_DataEngineering
+chapters:
+  - file: 02_Data_Engineering_Pipeline
