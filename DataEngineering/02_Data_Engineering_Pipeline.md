@@ -287,7 +287,75 @@
 
   3. The top layer includes user interfaces and reporting tools that enable users to conduct ad hoc data analysis on their business data.
 
+- Example of Data Warehouse are Snowflacke, Amazon Redshift, Google Big Query etc.
 
+#### Data Warehouse Usecases
+
+- Data Warehouse is used by business analysts, data scientists and data engineers to conduct self service analytics efforts. Applying a defined schema to all the data promotes data consistency, which makes data more reliable and easier to work with. Because a data warehouse stores data in structured, relational schema, it supports high performance SQL queries.
+
+#### Data Warehouse Challenges
+
+- Data Warehouses are costly to maintain. Data must be transformed before loading into the warehouse which requires time and resources. Becuase storage and compute are tightly coupled in traditional warehouse, scaling could be expensive. If data is not properly maintained, query perfromance can suffer.
+
+- Because they can struggle with unstructured and semi structured workloads, data warehouses are not well suited with AI and ML workloads.
+
+#### Key Charecteristics of Data Lakes
+
+- Data lakes are low cost data storage solutions designed to handle massive volumes of data. Data lakes use schema on read approach wjich means schemas are not enforced to incoming data. Instead schemas are enforced when the data is accessing using analytical tool or any other interfaces. 
+
+- Data Lakes stores data in antive format. This actually allows data lakes to store structure data, unstructured data, semi strucutred data in single data platform.
+
+- Data Lakes emerged to help organization to handle the flood of big data unleashed by Web 2.0 and the rise of cloud and mobile computing in the late 2000s and early 2010s. Organizations found themselves dealing with more data than ever, much of it in unstructured format such as free form text, images that traditional warehouse cannot easily handle.
+
+#### Data Lake Architecture
+
+- Early Data Lakes are build on Apache Hadoop Distributed File System (HDFS). Modern Data Lakes often uses cloud object storage such as  Amazon simple storage (S3), Azure Blob Storage or IBM Object Storage.
+
+- Data Lakes seperate data storage from compute resources which makes them more cost effective and scalable than data warehouses. Organizations can add more storage without adding compute resocurces. Cloud storage supports further scaling as organizations spins up more storage without expanding on premisis resources.
+
+- To process data in data lakes, users connect external processing units like apache spark to this data lake and data lake doesn't have built in processing unit like data warehouse.
+
+- Example of Data Lakes are Amazon S3 etc.
+
+#### Data Lakes Use cases
+
+- Data Lakes are popular choice for general purpose data storage because of thier low cost, scalability and ability to store data of any format.
+
+- Organizations often use data lakes to maintain backups and archiving old and unused data. Organization also use data lakes to store all incoming new data and data that doesn't has defined purpose. Organization store this data in data lake until they make use of it.
+
+- Organizations use data lakes to store data sets of Machine Learning, AI and big data analytics workloads, such as data discovery, model training and experimental analytics projects.
+
+#### Data Lake Challanges
+
+- Since they doesn't enforce strict schema and lack of bilt-in processing tools, data lakes can struggle with data governance and data quality. They are also less suited for dat-to-day BI and data analytics efforts of business users.
+
+- Organization often need seperate tools such as comprehensive data catlog and meta data management to maintain data accuracy and quality. Without such tools data lakes can be data swamps.
+
+#### Key Chrecteristcs of Data Lakehouse
+
+- A Data Lakehouse merges the key features of data lake and data warehouse to make one data management solution.
+
+- Like a data lake, lakehouse can store data of any format such as strucutred, semi strucutred, unstructured etc.
+
+- Like a warehouse, lakehouse supports fast querying and optimized analytics.
+
+#### Data Lakehouse architecture
+
+- A typical Lakehouse architecture includes :
+
+  **Ingestion Layer** : The ingestion layer gathers batch and real time streaming data from a range of sources. While lakehouse ETL processes to capture the data but many uses Extract, Load, Transform ELT. The lakehouse can load raw data into storage and transform it later when needed for analysis.
+
+  **Storage Layer** : The Storage Layer is typically cloud object storage used in data lake.
+
+  **Metadata layer** : This metadata layer provides a unifed catlog for metadata of every object in the lakehouse storage layer. This metadata layer helps lakehouse to make so many things that lakes cannot such as indexes for faster queries, enforce schemas and apply data governance and quality controls.
+
+  **Application Programming Interface (API) Layer** : The API layer enables users to connect tools for advanced data analytics.
+
+  **Consumption Layer** : The Consumption layer hosts client apps and tools for BI, ML and other data science and analytics projects.
+
+- Examples of Data Lakehouses are Amazon S3 + Iceberg or Apache hudi or Delta Lake etc.
+
+- For more information visit this website : [Data Warehouse vs Data Lake vs Data Lakehouse](https://www.ibm.com/think/topics/data-warehouse-vs-data-lake-vs-data-lakehouse)
 
 
 
