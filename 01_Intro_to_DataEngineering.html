@@ -1,0 +1,613 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction to Data Engineering &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_Intro_to_DataEngineering';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Engineering Pipeline" href="02_Data_Engineering_Pipeline.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Introduction to Data Engineering
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02_Data_Engineering_Pipeline.html">Data Engineering Pipeline</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F01_Intro_to_DataEngineering.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/01_Intro_to_DataEngineering.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to Data Engineering</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-engineering-pipeline">Data Engineering Pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#history-of-data-engineering">History of Data Engineering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-warehouse-era">1. 1980 - 2000: Data Warehouse Era</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#big-data-engineering-era">2. 2000 - 2010: Big Data Engineering Era</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#present-modern-data-engineering-era">3. 2020 - Present: Modern Data Engineering Era</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-maturity">Data Maturity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-engineers-place-with-in-a-data-team">Data Engineers place with in a data team</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-data-engineering">
+<h1>Introduction to Data Engineering<a class="headerlink" href="#introduction-to-data-engineering" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>We can easily understand data engineering in the context of data pipeline. First think data as a flow. It is generated somewhere and changed somewhere and served to someone who is going to use this data to do something useful. Lets understand this in a meaningful way with an example.</p></li>
+<li><p>Consider an ecommerce website such as amazon. Whenever you order something in amazon then an order data is generated from it. And this data gets manipulated and served to financial analyst to analyze this data and derive some useful insights for an organization.</p></li>
+<li><p>Since we thought data as a flow, the upstream in this flow is data generation. In this case it is amazon ecommerce website which we called as data producers. Downstream in this case is financial analyst which we call as data consumers. The person who brigdes the gap between data producers and data consumers is called as data engineer.</p></li>
+<li><p>So we can think data engineering as a bridge between data producers and data consumers. In simple words, data engineering is about turing the raw data collected from the data producers into clean, reliable and accessible data for decision making for data consumers.</p></li>
+<li><p>In professional way, Data Engineering is practice of building scalable, reliable systems which transforms raw data into high quality data for analytics and machine learning. or technically we can say it as Data Engineering is a discipline of designing, buliding and maintaining systems for collecting, storing, processing and analyzing the data at scale.</p></li>
+<li><p>Generally we might get a question that why do we need a seperate role for extracting, loading and transforming the data in an organization. The better way of answering to this the growth of technology. As the technology is growing rapidly, new apps, websites, payment gateways and new devices such as IOT sensor and autonomous cars getting developed which is generating massive amount of data. Since data is generating rapidly, organization wants to use this data to derive meaningful insights from it to improve orgainzation business which means businees use cases are also increasing. So organization need a person who can build an efficient system which can extract, load and transform the data in an appropriate format required by the business use case. The person who can build those kind of systems are called data engineers.</p></li>
+</ul>
+<section id="data-engineering-pipeline">
+<h2>Data Engineering Pipeline<a class="headerlink" href="#data-engineering-pipeline" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>Data Engineering Pipeline actually divided into two main parts. First one is actual data engineering pipeline and second one is undercurrents which we can see in the below image.</p>
+<p align="center">
+<img src="./_static/Data_Pipeline.png" alt="Data Pipeline" width="1000"/>
+<br>
+<em>Data Engineering Pipeline</em>
+</p>
+</li>
+<li><p>Data Engineering Pipeline starts with Data Generation where actual data gets generated. It could be order data from ecommerece website, events data from IOT devices such as CCTV etc or data generated from censors of Autonomous vehicles.</p></li>
+<li><p>Once the data gets generated, here comes the actual data engineering part. After data generation, we need to recieve the data through API’s and store it somewhere. This process of recieving and storing the data is called as Ingestion. This Ingestion process might be difficult if we have different sources of data. For example, a typical ecommerce company gets data from different sources. It gets order data from ecommerce website, payment data from payment gateways like stripe etc, events data from the website, sales data from the salesforce etc. It is difficult to collect all this using different API’s.</p></li>
+<li><p>Once we collected all these data then we have to store this data. We have different types of storages systems such as MYSQL, Postgres for relational data storage and Amazon S3 for object storage etc.</p></li>
+<li><p>Once we stored the raw data, now the next step we have to do is transform this data. Since we get data from different sources, we have to transform this data into one format, so that it could be esily used by the data consumers.</p></li>
+<li><p>Once we transform the data into meaningful format, then we need to serve this data to data consumers who might use this data for analytics, AI or ML or reverse ETL usecase.</p></li>
+<li><p>The common thing we do in this entire pipeline is storing the data in all the stages. I mean we store raw data and tranformed data also which we need for future purposes.</p></li>
+<li><p>Second part of the data pipeline is undercurrents which spans entire data pipeline. They are Orchestation, Security, Data governance and DataOps, Data Quality etc.</p></li>
+</ul>
+</section>
+<section id="history-of-data-engineering">
+<h2>History of Data Engineering<a class="headerlink" href="#history-of-data-engineering" title="Link to this heading">#</a></h2>
+<section id="data-warehouse-era">
+<h3>1. 1980 - 2000: Data Warehouse Era<a class="headerlink" href="#data-warehouse-era" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In 1980’s businesses began realizing that their growing piles of operational data from sales to inventory logs held valuable insights. But this data was scattered among various departments, systems and formats. They doesn’t have centralized storage which stores all thier operational data.</p></li>
+<li><p>This given the birth to Data warehouses. Data Warehouses are centralized systems which stores structured data which is clean, well organized and queryable. To feed these data warehouses a new role gets emerged which is ETL developer. These ETL developers will develop data pipelines which extracts, transforms, stores the data into warehouses. Since the data stored in warehouse is well structured, now the organization need a person who can analyze the data and generate reports by using well structured data. Here a new role gets emerged which is business Intelligence Engineers whi actually analyzes the data and generate reports.</p></li>
+<li><p>But these systems are rigid and expensive. Everything was On-premises which means comapanies had to buy and manage thier own hardware such as servers. And ETL developers also needs to change thier pipleines when data gets changed (as business is expanding new formats of data is getting generated). So this mechanism is becoming more complex and expensive for the organization.</p></li>
+</ul>
+</section>
+<section id="big-data-engineering-era">
+<h3>2. 2000 - 2010: Big Data Engineering Era<a class="headerlink" href="#big-data-engineering-era" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In early 2000’s world has changed and internet evoleved rapidly. Now huge amount of data is getting generated which businesses cannot able to handle. Amount of data generating is one concern for them and anothor one is data isn’t structured anymore. It is in the form of images, log and clickstreams etc.</p></li>
+<li><p>Traditional Data warehouse cannot able to handle these variety, velocity and volume of these <a class="reference external" href="http://data.In">data.In</a> these time Big Data Evolution kicked off.</p></li>
+<li><p>In 2003, Google produced a research paper on MapReduce which process large datasets accross multiple machines. This inspired the creation of Apache Hadoop which is an open source ecosystem for big data. Now instead of centralized monoliths, data could be stored and processed accross clusters of cheap commidity software.</p></li>
+<li><p>With these new challenges and tools, new roles are emerged at that time which are Big Data Engineers. They masterd tools like Hadoop, Hive and pig to get into the new roles. Later Apache Spark offered faster, in-memory processing and kafka enabled real-time streaming of events.</p></li>
+<li><p>Eventhough these technologies solved many complex problems such as Hadoop prodived Distributed storage by HDFS file system and parallel processing by Map Reduce to handle large data which cannot be done by molithic datawarehouse and spark solved Hadoops Map Reduce by introducing in memory computation instead of disk computation and kafka is used for real time data pipelines, they become old as time progressing.</p></li>
+<li><p>Because they are hard to manage such as complex setup and configuration, cluster management (YARN, Zookeeper), Manual scaling and high operational overload. And we need to more professionals who understands underlying technology behind these ecosystems. So by seeing these challenges, companies realized that they were spending more time and money for managing the software than working with data.</p></li>
+</ul>
+</section>
+<section id="present-modern-data-engineering-era">
+<h3>3. 2020 - Present: Modern Data Engineering Era<a class="headerlink" href="#present-modern-data-engineering-era" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>By the time of 2020’s, each organization started maintaining their own infrastructure, os they started shifting towards cloud. Instead of managing you own Hadoop cluster, you could use Snowflake or Big Query, cloud-native data warehouses that scaled data automatically. Instead of writing custom ingestion scripts, we can use tools like Fivetarn to pipe data from dozons of sources effortlessly. Instead of ETL, the world shifts towards ELT: load raw data first, then transform it later using tools like dbt etc.</p></li>
+<li><p>This changed the roles in data teams. Data Engineers were no longer just plumbers of pipelines as they become platform builders and automation specialists. And the focus also shifted from <code class="docutils literal notranslate"><span class="pre">how</span> <span class="pre">can</span> <span class="pre">we</span> <span class="pre">process</span> <span class="pre">the</span> <span class="pre">data</span> <span class="pre">?</span></code> to <code class="docutils literal notranslate"><span class="pre">how</span> <span class="pre">we</span> <span class="pre">do</span> <span class="pre">we</span> <span class="pre">enable</span> <span class="pre">fast</span> <span class="pre">reliable</span> <span class="pre">insights</span> <span class="pre">for</span> <span class="pre">business</span> <span class="pre">?</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="data-maturity">
+<h2>Data Maturity<a class="headerlink" href="#data-maturity" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>Data Maturity measures how effectively an organization collects, manages, analyzes, and uses its data to drive decisions and automation. Simply, it is the measurement of how well an organization manages and analyzes its data assests.</p></li>
+<li><p>Consider an example of Shopsmart startup company which pickups the orders and sell products to the companies. At start they usually check how many orders they got in last week ? etc. They might have a small team to manage all these operations. So there might be only one person who analyzes the data. Since they don’t have huge volume of customers, so they store all the data in a monolithic DB. If they want to find how many orders they have got in last week, then they will fetch the data from that monolithic DB and generates charts using Excel. So here they are not using their data effectively as their main concentration is on to get more customers and manufacturing products. So at this stage they doesn’t value the data and they doesn’t have that much data to get something out out of it. So at this stage the data maturity is in “Start” state.</p></li>
+<li><p>As days go on, Shopsmart starts getting more orders because of quality of thier product etc. Now they getting huge volume of data which needs to be handled and analyzed effectively. So they starts hiring a data engineer and data analyst to handle the data effectively and generate dynamic dashboards for managing their inventory and operations etc. At this stage the data maturity is at “Scale” state.</p></li>
+<li><p>After long time, Shopsmart evolved as big ecommerce company and now its need to give tough competition to its competitors in order to survive in the market and reach the expectations of the customers. So they decided to build a recommender system for recommending products to customers and gives the real time experiance such as personalized discounts and product shipping tracker etc. For this they need a data science team along with data engineer. At this stage the data maturity level is “Lead” state.</p></li>
+<li><p>So we can see that as data maturity level increases with the increase of data volume then the tech stack and employees required also increases.</p>
+<p align="center">
+<img src="./_static/Data_Maturity.png" alt="Data Pipeline" width="1000"/>
+<br>
+<em>Data Maturity</em>
+</p>
+</li>
+</ul>
+</section>
+<section id="data-engineers-place-with-in-a-data-team">
+<h2>Data Engineers place with in a data team<a class="headerlink" href="#data-engineers-place-with-in-a-data-team" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>As we know Data is a Flow, then data engineers are brigde between data produces and data consumers. Here data producers are software engineers and devops engineers. Becuase software engineers are the one who actually builds the applications and from that applications only majority of data gets generated. On the otherside, devops engineers are responsible for maintaining infrastructure of the application in cloud or on premises. From them we might get the log data and event data. So data engineers need to coordinate with them effectively to know about how much volume of data it would be generated etc and based on it only they might decide which tech stack they have to use in order build the data pipeline.</p></li>
+<li><p>In downstream, we have data consumer such as Data Analysts and Data Scientists. Data Engineers needs to coordinate with these people also as they have to know in which format and what type of data they actually need so they can decide which transformation they needs to apply to the data so that they can transform data to the appropriate format required by data scietists and data analysts.</p></li>
+<li><p>The main resposnibilites of data engineers are :</p>
+<ol class="arabic simple">
+<li><p>They need to communicate both technical and non technical people.</p></li>
+<li><p>They need to understand how to scope and manage a data project.</p></li>
+<li><p>They need to minimize the cost and work within the budget.</p></li>
+<li><p>They need to create a good data architecture.</p></li>
+<li><p>They need to build and manage a reliable and performant data pipelines.</p></li>
+<li><p>They need to make sure the security of data and need to follow the general data protection rules (GDPR) and use good dataops practices.</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="02_Data_Engineering_Pipeline.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Engineering Pipeline</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-engineering-pipeline">Data Engineering Pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#history-of-data-engineering">History of Data Engineering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-warehouse-era">1. 1980 - 2000: Data Warehouse Era</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#big-data-engineering-era">2. 2000 - 2010: Big Data Engineering Era</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#present-modern-data-engineering-era">3. 2020 - Present: Modern Data Engineering Era</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-maturity">Data Maturity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-engineers-place-with-in-a-data-team">Data Engineers place with in a data team</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
