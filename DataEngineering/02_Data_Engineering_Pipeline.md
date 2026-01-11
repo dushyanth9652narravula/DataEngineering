@@ -195,9 +195,97 @@
 
 - The major benifits of Object storage is Scalability, Reduced Complexity unlike hierarical structures in File systems, High Availabilty and durability, cost efficiency, security and cloud comapatability. These storage are majorly used in Backup and disaster recovery, data archiving, generative ai, content management, data lakes etc.
 
+- We usually store data which doesn't changes frequently in Object Storage as objects are immutable in object storage and we usually store that data in object storage which is not accessed regularly because it has high latency as search performance is low because of its flat structure.
+
+
 - For more info about object storage visit this site : [Object Storage](https://www.ibm.com/think/topics/object-storage)
 
 - Some examples of Object Storages are Amazon S3, Google Cloud Storage, Azure Blob Storage, MinIO etc.
+
+### Row vs Columnar Storage
+
+- When it comes to storing and managing the data, we might encounter two types of databases . Those are Row vs Columnar Databases. Understanding the differences between these two fomarts can help us to make better decisions when designing databases and data warehouses.
+
+#### 1. Row Based Storage
+
+- Row Based Storage organizes data by rows. Each row hold complete record and include all the fileds of the record which means that in memory all data of a record is stored together. Suppose consider the orders table. In Row based database, at first all fields of first row is stored in memory then all the fields of second row is stored etc.So when you read/write a record, you access all columns of that row simultaneously. This format is typically used in traditional relational databases such as MySQL and PostgresSQL.
+
+- The major advantages of Row Based Databases are :
+
+  **Efficient for Transactional Operations** : Row Based Storage is optimized for transactional oriented operations where you often need to access and modify entire records, such as inserting new records or updating existing record.
+
+  **Simple Data Access** : Accessing entire record is straightforward, making it easy to handle operations like adding or updating rows.
+
+- The major disadvantages of row based storage is :
+
+  **Inefficient for Analytical Operations** : Row based Storage is inefficient for Analytical Operations as they require only particular column. Since row based storage retrieves entire reords only analysis which automatically retrieves unnecessary columns also.
+
+  **Storage Space** : Row Based Storage requires more space if it is not properly optimized as it stores entire rows including any unused or redundant rows.
+
+- The file formats of row based are CSV, JSON, AVRO etc. The major uses case of Row Based Storage is for Ecommerce websites as it deals with customers, orders and payments tables in which we actually perform addition, deletion, updation of entire records which is suitable for row based storage. So Row Based Storage is suitable for Online Transaction Processing Systems (OLTP)
+
+#### 2. Columnar Based Storage
+
+- Column Based Storage organizes data by columns. Here each column is stored seperately allowing the system to read or write the specific columns independently. This format is commonly used in data warehouse such as Google BigQuery and Amazon Redshift.
+
+- So for column based storage, all the data related to single column is stored sequentially and then 2nd column values are stored sequentially and soon. 
+
+- The major advantages of columnar Based Database are :
+
+  **Efficient for Analytical Queries** : Column based storages are optimized for read-heavy and analytical operations where you typically need to scan and aggregate accross all rows (records) but only a few columns.
+
+  **Data Compression** : Columns with similar data types can be highly compressed, reducing storage costs and improving read performance. Because if you store similar data at same place we can compress them easily. As data of same column might have repeated regularly then we can remove duplicates by keeping how many times its repeated. Such as in a country codes column NY might repeated simulatenoulsy like `NY NY NY NY ...` then we can replace it with [6, NY] which means NY repeated 6 times simulatenously. So it automatically gets compressed.
+
+  **Faster Aggregations** : Aggregations and calculations are faster since only required columns are read and data is already organized in a columnar format.
+
+- The major disadvantages of columnar Storage are :
+
+  **Inefficient for Transactional Operations** : Writing new records or updating existing records are slower since it involves accessing multiple columns scattered accross different storage locations.
+
+  **Complexity** : Implementing and managing columnar database can be more complex compared to row based storage.
+
+- Example for columnar storage formats are Parquet and ORC etc.
+
+- Columnar Storages are majorly used in Data warehouses. For business analytics, company uses a data warehouse in Google Big Query. This warehosue store historical data for sales analysis, customer behaviour, inventory trends in columnar formats. Analytical queires involves scanning all the rows but only few columns. This is usually called Online Analytical Processing (OLAP).
+
+- For more information use this website : [Row vs Columnar Storage](https://medium.com/@DataWithSantosh/row-based-storage-vs-column-based-storage-a-beginners-guide-6e91dbadb181)
+
+
+### Data Warehouse vs Data Lake vs Data Lakehouse
+
+- There are different data storage systems available in todays market such as Data Warehouse, Data Lake and Data Lakehouse. But organizations need to know which data architecture they need to use for business purposes as it reduces the cost of building the data pipelines and increases the performance of the data pipeline.
+
+- Data Warehouses, Data Lakes, Data Lakehouses are three different data maangement solutions with three different functions:
+
+  1. Data Warehouse aggregate, clean and prepare data so it can be used for business intelligence and other data analytics efforts.
+
+  2. Data Lakes are used to store large amount of raw data at low cost.
+
+  3. Data Lakehouse combine the flexible data storage of lake and the high performance analytics capabilities of warehouse into one solution.
+
+- Because these three solutions have different features and serve different purposes, many enterprise data architectures use 2 or 3 of them ina holistic data fabric :
+
+  1. An organization use data lake as general purpose storage solution to store all incoming data in any format.
+
+  2. Data from data lake are fed into data warehouse so that these are stored in organized way and used for decison making.
+
+  3. A Data Lakehouse architecture can help data scientists and data engineers more easily work with raw data in data lake for machine learning (ML), Artificial Intelligence (AI) and data science projects.
+
+#### Key Charecteristics of Data Warehouse
+
+- A Data Warehouse aggregates data from multiple sources such as databases, business applications, social media feeds into a single store. The defining feature of data warehouse tool is that it cleans and prepares data sets it ingests.
+
+- Data Warehouse uses an approach called "schema-on-write" which applies a consistent schema to all data that is written in the storage. This helps optimize data for business intelligence and analytics.
+
+#### Data Warehouse Architecture
+
+- A typical data warehouse 3 layers:
+
+  1. The Bottom Layer where data flows into warehouse from mutiple sources through an extract, transform and load process. In many warehouses data is stored in a relational databases or similar system.
+
+  2. The middle layer is build around analytics engine such as Online Analytics Processing (OLAP) system or SQL based engine. This layer enables users to query datasets and perform analytics directly in warehouse.
+
+  3. The top layer includes user interfaces and reporting tools that enable users to conduct ad hoc data analysis on their business data.
 
 
 
